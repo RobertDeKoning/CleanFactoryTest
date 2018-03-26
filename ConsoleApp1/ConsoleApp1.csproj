@@ -60,6 +60,7 @@
     <Compile Include="Helpers\Interfaces\IValidator.cs" />
     <Compile Include="Helpers\Interfaces\IValidatorFactory.cs" />
     <Compile Include="Helpers\ValidatorFactory.cs" />
+    <Compile Include="Models\Error001.cs" />
     <Compile Include="Models\Interfaces\IErrors.cs" />
     <Compile Include="Models\Interfaces\IResult.cs" />
     <Compile Include="Models\Interfaces\ISample.cs" />
@@ -67,12 +68,19 @@
     <Compile Include="Models\Result002.cs" />
     <Compile Include="Models\Sample001.cs" />
     <Compile Include="Models\Sample002.cs" />
+    <Compile Include="Models\ValidatorBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConsoleApp1.Data\ConsoleApp1.Data.csproj">
+      <Project>{aad1472f-db8e-47aa-b520-681379b5c6b7}</Project>
+      <Name>ConsoleApp1.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

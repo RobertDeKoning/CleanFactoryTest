@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1.Models.Interfaces
+namespace ConsoleApp1.Data.Repository.Interfaces
 {
-    interface IErrors
+    public interface IRepository
     {
-        string ErrorMessage { get; set; }
     }
 }

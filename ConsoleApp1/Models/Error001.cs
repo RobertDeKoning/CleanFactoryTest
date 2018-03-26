@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Models
 {
-    internal class Result001 : Sample001, IResult
+    internal class Error001 : Sample001, IErrors
     {
-        public string ExtraField001 { get; set; }
+        public string ErrorMessage { get; set; }
     }
 }

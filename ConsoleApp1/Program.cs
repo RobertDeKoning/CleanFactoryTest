@@ -1,4 +1,6 @@
-﻿using ConsoleApp1.Enum;
+﻿using ConsoleApp1.Data.Repository;
+using ConsoleApp1.Data.Repository.Interfaces;
+using ConsoleApp1.Enum;
 using ConsoleApp1.Helpers;
 using ConsoleApp1.Helpers.Interfaces;
 using ConsoleApp1.Models;
@@ -29,8 +31,13 @@ namespace ConsoleApp1
 
                 return;
             }
-            var records = validator.GetAndValidateRecords<Sample001>(filename);
-            var enrichedrecords = validator.EnrichValidRecords<Sample001, Result001>(records);
+            var validRecords = validator.GetAndValidateRecords<Sample001>(filename);
+            var validEnrichedRecords = validator.EnrichValidRecords<Sample001, Result001>(validRecords);
+            validEnrichedRecords = validator.ValidateEnrichedRecords(validEnrichedRecords);
+            validEnrichedRecords = validator.TrySaveRecordsToDb(validEnrichedRecords);
+
+            var invalidRecords = validator.GetInvalidRecords<Sample001,Error001>();
+
 
         }
 
@@ -41,6 +48,8 @@ namespace ConsoleApp1
             container.Register<IValidatorFactory, ValidatorFactory>();
             container.RegisterCollection<IValidator>
                       (new Assembly[] { Assembly.GetExecutingAssembly() });
+            container.Register<IRepository, Repository>();
+
 
             container.Verify();
 

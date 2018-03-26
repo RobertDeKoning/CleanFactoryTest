@@ -13,12 +13,17 @@ namespace ConsoleApp1.Helpers.Interfaces
     {
         bool CanValidateTemplate(FileTemplate fileTemplate);
         (bool isFileValid, List<string> fileErrors) ValidateFile(string filename);
-        IEnumerable<T> GetAndValidateRecords<T>(string filename) where T : ISample;
+        IEnumerable<ISample> GetRecords<TSample>(string filename) where TSample : ISample;
 
-        IEnumerable<TResult> EnrichValidRecords<TSample, TResult>(IEnumerable<TSample> validRecords) where TSample : ISample  where TResult : TSample, IResult;
+        IEnumerable<ISample> GetValidRecords<TSample>(IEnumerable<ISample> records) where TSample : ISample;
 
-        IEnumerable<T> GetInvalidRecords<T>() where T : IErrors;
+        IEnumerable<IResult> EnrichValidRecords<TSample, TResult>(IEnumerable<TSample> validRecords) where TSample : ISample  where TResult : TSample, IResult;
 
+        IEnumerable<TResult> ValidateEnrichedRecords<TResult>(IEnumerable<TResult> validRecords) where TResult : IResult;
+
+        IEnumerable<TResult> TrySaveRecordsToDb<TResult>(IEnumerable<TResult> validRecords) where TResult : IResult;
+
+        IEnumerable<IErrors> GetInvalidRecords();
 
 
     }
