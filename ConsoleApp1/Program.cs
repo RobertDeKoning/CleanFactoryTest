@@ -18,8 +18,10 @@ namespace ConsoleApp1
         {
             var container = GetRegisteredContainer();
             var validatorFactory = container.GetInstance<IValidatorFactory>();
-            var validator = validatorFactory.Create(FileTemplate.CanonPs001);
-            var filename = "CanonPs001.csv";
+                        
+            var filename = "CanonPs005.csv";
+            var validator = validatorFactory.Create(filename);
+
             (bool isFileValid, List<string> errors) = validator.ValidateFile(filename);
             if (!isFileValid)
             {
@@ -28,15 +30,15 @@ namespace ConsoleApp1
                 {
                     writer.WriteLine(string.Join("\r\n",errors));
                 }
-
                 return;
             }
-            var validRecords = validator.GetAndValidateRecords<Sample001>(filename);
+            var records = validator.GetRecords<Sample001>(filename);
+            var validRecords = validator.GetValidRecords(records);
             var validEnrichedRecords = validator.EnrichValidRecords<Sample001, Result001>(validRecords);
             validEnrichedRecords = validator.ValidateEnrichedRecords(validEnrichedRecords);
             validEnrichedRecords = validator.TrySaveRecordsToDb(validEnrichedRecords);
 
-            var invalidRecords = validator.GetInvalidRecords<Sample001,Error001>();
+            var invalidRecords = validator.GetInvalidRecords();
 
 
         }

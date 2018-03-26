@@ -15,13 +15,13 @@ namespace ConsoleApp1.Helpers.Interfaces
         (bool isFileValid, List<string> fileErrors) ValidateFile(string filename);
         IEnumerable<ISample> GetRecords<TSample>(string filename) where TSample : ISample;
 
-        IEnumerable<ISample> GetValidRecords<TSample>(IEnumerable<ISample> records) where TSample : ISample;
+        IEnumerable<ISample> GetValidRecords<TSample>(IEnumerable<TSample> records) where TSample : ISample;
 
-        IEnumerable<IResult> EnrichValidRecords<TSample, TResult>(IEnumerable<TSample> validRecords) where TSample : ISample  where TResult : TSample, IResult;
+        IEnumerable<IResult> EnrichValidRecords<TSample, TResult>(IEnumerable<ISample> validRecords) where TSample : ISample  where TResult : TSample, IResult;
 
-        IEnumerable<TResult> ValidateEnrichedRecords<TResult>(IEnumerable<TResult> validRecords) where TResult : IResult;
+        IEnumerable<IResult> ValidateEnrichedRecords<TResult>(IEnumerable<TResult> validRecords) where TResult : IResult;
 
-        IEnumerable<TResult> TrySaveRecordsToDb<TResult>(IEnumerable<TResult> validRecords) where TResult : IResult;
+        IEnumerable<IResult> TrySaveRecordsToDb<TResult>(IEnumerable<TResult> validRecords) where TResult : IResult;
 
         IEnumerable<IErrors> GetInvalidRecords();
 

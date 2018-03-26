@@ -26,7 +26,7 @@ namespace ConsoleApp1.Helpers
             return fileTemplate == FileTemplate.CanonPs001;
         }
 
-        public IEnumerable<IResult> EnrichValidRecords<TSample, TResult>(IEnumerable<TSample> validRecords) where TSample : ISample where TResult : IResult, TSample
+        public IEnumerable<IResult> EnrichValidRecords<TSample, TResult>(IEnumerable<ISample> validRecords) where TSample : ISample where TResult : IResult, TSample
         {
             var result = new List<Result001>();
             foreach (var validRecord in validRecords)
@@ -58,28 +58,28 @@ namespace ConsoleApp1.Helpers
 
         public IEnumerable<IErrors> GetInvalidRecords()
         {
-            throw new System.NotImplementedException();
+            return Errors;
         }
 
-        public IEnumerable<TResult> TrySaveRecordsToDb<TResult>(IEnumerable<TResult> validRecords) where TResult : IResult
+        public IEnumerable<IResult> TrySaveRecordsToDb<TResult>(IEnumerable<TResult> validRecords) where TResult : IResult
         {
             throw new System.NotImplementedException();
         }
 
-        public IEnumerable<TResult> ValidateEnrichedRecords<TResult>(IEnumerable<TResult> validRecords) where TResult : IResult
+        public IEnumerable<IResult> ValidateEnrichedRecords<TResult>(IEnumerable<TResult> validRecords) where TResult : IResult
         {
-            throw new System.NotImplementedException();
+            return new List<Result001>();
         }
 
         public (bool isFileValid, List<string> fileErrors) ValidateFile(string filename)
         {
-            throw new System.NotImplementedException();
+            return (true, null);
         }
 
-        public IEnumerable<ISample> GetValidRecords<TSample>(IEnumerable<ISample> records) where TSample : ISample
+        public IEnumerable<ISample> GetValidRecords<TSample>(IEnumerable<TSample> records) where TSample : ISample
         {
             var result = new List<ISample>();
-            foreach (Sample001 record in records)
+            foreach (var record in records as IEnumerable<Sample001>)
             {
                 if (string.IsNullOrEmpty(record.Email))
                 {

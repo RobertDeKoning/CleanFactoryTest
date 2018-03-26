@@ -9,6 +9,6 @@ namespace ConsoleApp1.Helpers.Interfaces
 {
     interface IValidatorFactory
     {
-        IValidator Create(FileTemplate fileTemplate);
+        IValidator Create(string filename);
     }
 }

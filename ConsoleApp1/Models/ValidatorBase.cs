@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Models
 {
-    internal abstract class ValidatorBase
+    public abstract class ValidatorBase
     {
-        private List<IErrors> Errors { get; set; }
-        private List<string> FileErrors { get; set; }
+        internal List<IErrors> Errors { get; set; }
+        internal List<string> FileErrors { get; set; }
         public ValidatorBase()
         {
             Errors = new List<IErrors>();

@@ -59,6 +59,7 @@
     <Compile Include="Helpers\CanonPs004Validator.cs" />
     <Compile Include="Helpers\Interfaces\IValidator.cs" />
     <Compile Include="Helpers\Interfaces\IValidatorFactory.cs" />
+    <Compile Include="Helpers\NullValidator.cs" />
     <Compile Include="Helpers\ValidatorFactory.cs" />
     <Compile Include="Models\Error001.cs" />
     <Compile Include="Models\Interfaces\IErrors.cs" />
